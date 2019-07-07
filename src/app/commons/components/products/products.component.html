@@ -1,0 +1,8 @@
+<div class="col-md-9">
+  <div class="row">
+    <ng-container *ngFor="let product of productList">
+      <app-product (addtocartproductlist)="onaddtocartproductlist($event)" [product]="product"></app-product>
+    </ng-container>
+
+  </div>
+</div>

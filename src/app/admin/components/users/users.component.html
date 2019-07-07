@@ -1,0 +1,113 @@
+<div syle="text-align:center !important;">
+    <div class="collection">
+    
+    <a style="padding-left: 50px;" href="" (click)="toggleCreate()">Create Users</a>
+    
+<form style="padding-left: 35px;" *ngIf="createshow" (ngSubmit)="createUser(u)">
+     <br/>      
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.username" type="text" name="username" value=""  class="form-control input-sm" placeholder="Username"></span>
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.password" type="text" name="password" value="" class="form-control input-sm" placeholder="Password"></span>
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 ">
+        <select  [ngModelOptions]="{standalone:true}" [(ngModel)]="u.usertype" class="form-control input-sm" >
+            <option value="" selected>User Type?</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+    </span> 
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 " >
+        <select class="form-control input-sm" [ngModelOptions]="{standalone:true}" [(ngModel)]="u.enabled">
+            <option value="" selected>Enable/Disable?</option>
+            <option value="true">Enable</option>
+            <option value="false">Disable</option>
+        </select>
+    </span>     
+    
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 "><button type="submit" class="btn btn-sm btn-primary pull-left">Add User</button></span>
+    <span class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 " ><small>{{uMessage}}</small></span>
+    <br/><br/>
+</form>
+
+<form style="padding-left: 35px;" *ngIf="editshow" (ngSubmit)="onedititem(ue)">
+     <br/>      
+     <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" hidden disabled [(ngModel)]="ue._id" type="text" name="_id" value=""  class="form-control input-sm" placeholder="Id"/></span>
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="ue.username" type="text" name="username" value=""  class="form-control input-sm" placeholder="Username"/></span>
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="ue.password" type="text" name="password" value="" class="form-control input-sm" placeholder="Password"/></span>
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 ">
+        <select  [ngModelOptions]="{standalone:true}" [(ngModel)]="ue.usertype" class="form-control input-sm" >
+            <option value="" selected>User Type?</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+    </span> 
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 " >
+        <select class="form-control input-sm" [ngModelOptions]="{standalone:true}" [(ngModel)]="ue.enabled">
+            <option value="" selected>Enable/Disable?</option>
+            <option value="true">Enable</option>
+            <option value="false">Disable</option>
+        </select>
+    </span>     
+    
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 "><button type="submit" class="btn btn-sm btn-primary pull-left">Edit User</button></span>
+    <span class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 " ><small>{{ueMessage}}</small></span>
+    <br/><br/>
+</form>
+
+    <form>
+            <div class=" col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              
+            </div>
+            <div class=" col-xs-12 col-sm-6 col-md-3 col-lg-3 pull-right">
+                <!-- See Alternate implementation in admin search pipe where it is directly assigned and it breaks the change detection -->
+                <app-searchbox (update)="searchitems($event)"></app-searchbox>
+            </div>
+    </form><br><br>
+    <span class="  col-xs-12 col-sm-12 col-md-12 col-lg-12 " style="margin-bottom: 100px;">
+            <span href="#!" class="collection-item active collection-table-font">
+                <div class="mdl-grid" style="padding:0px !Important; background-color: #eee;">                     
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding:10px">
+                      <b>Username</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding:10px">
+                      <b>Usertype</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                      <b>Enabled</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                    <b>Edit</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                    <b>Disable</b>
+                    </div>
+                </div>
+            </span>
+            <span href="#!" class="collection-item collection-table-font" style="font-size:0.8em;">
+                <div class="mdl-grid" 
+                style="padding:0px !Important; border-bottom: 1px solid #eee;" 
+                *ngFor="let item of datalist">                
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"
+                    style="padding:10px"
+                    >
+                      {{item.username}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"
+                    style="padding:10px"
+                    >
+                      {{item.usertype}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"
+                    style="padding:10px"
+                    >
+                      {{item.enabled}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                      <a (click)="edititem(item)" href="">Edit</a>
+                     </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px"> 
+                      <a (click)="ondeleteitem(item)" href="">Delete</a>
+                    </div>
+                </div>
+            </span>
+    </span>                       
+    </div>
+</div>

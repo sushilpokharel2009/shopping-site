@@ -1,0 +1,77 @@
+<div syle="text-align:center !important;">
+    <div class="collection">
+    <a style="padding-left: 50px;" href="" (click)="toggleCreate()">Create Product</a>
+<form style="padding-left: 35px;" *ngIf="createshow" (ngSubmit)="createProduct(u)">
+     <br/>      
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.name" type="text" name="name" value=""  class="form-control input-sm" placeholder="Name"></span>
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 ">
+      <select  [ngModelOptions]="{standalone:true}" [(ngModel)]="u.category" class="form-control input-sm" >
+            <option value="" selected>Category?</option>
+            <option value="homedecoration">Home Decoration</option>
+            <option value="electronics">Electronics</option>
+            <option value="foodbeverages">Food & Beverages</option>
+        </select>
+    </span>
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.price" type="text" name="price" value="" class="form-control input-sm" placeholder="Price"></span>
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.currency" type="text" name="curency" value="" class="form-control input-sm" placeholder="Currency"></span>         
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.summary" type="text" name="summary" value="" class="form-control input-sm" placeholder="Summary"></span>         
+    <span class=" col-xs-12 col-sm-12 col-md-3 col-lg-3 "><input [ngModelOptions]="{standalone:true}" [(ngModel)]="u.details" type="text" name="details" value="" class="form-control input-sm" placeholder="Details"></span>         
+    <br/><br/>
+    <span class=" col-xs-12 col-sm-12 col-md-2 col-lg-2 "><button type="submit" class="btn btn-sm btn-primary pull-left">Add Product</button></span>
+    <span class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 " ><small>{{uMessage}}</small></span>
+    <br/><br/>
+</form>
+<br/><br/>
+    <form>
+            <div class=" col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              
+            </div>
+            <div class=" col-xs-12 col-sm-6 col-md-3 col-lg-3 pull-right">
+                <!-- See Alternate implementation in admin search pipe where it is directly assigned and it breaks the change detection -->
+                <app-searchbox (update)="searchitems($event)"></app-searchbox>
+            </div>
+    </form><br><br>
+    <span class="  col-xs-12 col-sm-12 col-md-12 col-lg-12 " style="margin-bottom: 100px;">
+            <span href="#!" class="collection-item active collection-table-font">
+                <div class="mdl-grid" style="padding:0px !Important; background-color: #eee;">                     
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding:10px">
+                      <b>Name</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding:10px">
+                      <b>Price</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                      <b>Category</b>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                    <b>Delete</b>
+                    </div>
+                </div>
+            </span>
+            <span href="#!" class="collection-item collection-table-font" style="font-size:0.8em;">
+                <div class="mdl-grid" 
+                style="padding:0px !Important; border-bottom: 1px solid #eee;" 
+                *ngFor="let item of datalist">                
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"
+                    style="padding:10px"
+                    >
+                      {{item.name}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"
+                    style="padding:10px"
+                    >
+                      {{item.price}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"
+                    style="padding:10px"
+                    >
+                      {{item.category}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px"> 
+                      <a (click)="ondeleteitem(item)" href="">Delete</a>
+                    </div>
+                </div>
+            </span>
+    </span>                       
+    </div>
+</div>

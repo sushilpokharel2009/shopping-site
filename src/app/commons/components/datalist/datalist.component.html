@@ -1,0 +1,49 @@
+<div syle="text-align:center !important;">
+    <div class="collection">
+    
+    <form>
+            <div class=" col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              
+            </div>
+            <div class=" col-xs-12 col-sm-6 col-md-3 col-lg-3 pull-right">
+                <!-- See Alternate implementation in admin search pipe where it is directly assigned and it breaks the change detection -->
+                <app-searchbox (update)="searchitems($event)"></app-searchbox>
+            </div>
+    </form><br><br>
+    <span class="  col-xs-12 col-sm-12 col-md-12 col-lg-12 " style="margin-bottom: 100px;">
+            <span href="#!" class="collection-item active collection-table-font">
+                <div class="mdl-grid" style="padding:0px !Important; background-color: #eee;">                     
+                    <div *ngFor="let head of datalist.headers" 
+                    class="col-xs-12 col-sm-12 col-md-2 col-lg-2"
+                    style="padding:10px">
+                      <b>{{head.display}}</b>
+                    </div>
+                    <div *ngIf="!edititemoption" class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                    <b>Edit</b>
+                    </div>
+                    <div *ngIf="!deleteitemoption" class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                    <b>Delete</b>
+                    </div>
+                </div>
+            </span>
+            <span href="#!" class="collection-item collection-table-font" style="font-size:0.8em;">
+                <div class="mdl-grid" 
+                style="padding:0px !Important; border-bottom: 1px solid #eee;" 
+                *ngFor="let item of listview">                
+                    <div *ngFor="let it of item | dataobjtoarr: datalist.headers" 
+                    class="col-xs-12 col-sm-12 col-md-2 col-lg-2"
+                    style="padding:10px"
+                    >
+                      {{it}}
+                    </div>
+                    <div *ngIf="!edititemoption" class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px">
+                      <a (click)="edititems(it)" href="">Edit</a>
+                     </div>
+                    <div *ngIf="!deleteitemoption" class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="padding:10px"> 
+                      <a (click)="deleteitems(it)" href="">Delete</a>
+                    </div>
+                </div>
+            </span>
+    </span>                       
+    </div>
+</div>

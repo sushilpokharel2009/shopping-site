@@ -1,0 +1,22 @@
+<div class="col-md-8">
+
+  <div class="thumbnail" *ngIf="productdetails">
+    <img class="img-responsive" src="../../../../assets/img/product-text.png" alt="">
+    <br/>
+    <div class="caption-full">
+      <h4 class="pull-right">{{productdetails.currency}} {{productdetails.price}}</h4>
+      <h4><a href="#">{{productdetails.name}}</a>
+      </h4>
+      <p>{{productdetails.summary}}</p>
+      <p>{{productdetails.details}}</p>
+    </div>
+    <br/>
+
+    <div class="text-right">
+      <input name="username" type="text" size="1" style="font-size:1.2em;top:2px;position:relative;" [(ngModel)]="productnumber" placeholder="No"/>
+      <a class="btn btn-default" (click)="onAddToCart()">Add to cart</a>
+    </div>
+    <br/>
+  </div>
+
+</div>
